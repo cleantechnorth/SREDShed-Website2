@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation */
 .navbar {
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     background-color: white !important;
 }
 

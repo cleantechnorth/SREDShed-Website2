@@ -5,14 +5,13 @@
 
 // YouTube API configuration
 const YOUTUBE_CONFIG = {
+    CHANNEL_ID: 'UCKEKDbwFB08xaNrP1dMpxPA',
     CHANNEL_HANDLE: 'sredfromtheshed2727',
     CHANNEL_URL: 'https://youtube.com/@sredfromtheshed2727',
     API_KEY: '', // Will be set from environment
     MAX_RESULTS_FEATURED: 3,
     MAX_RESULTS_ALL: 12,
-    VIDEOS_PER_PAGE: 6,
-    // Alternative method: search by channel name
-    SEARCH_QUERY: 'SRED From The Shed'
+    VIDEOS_PER_PAGE: 6
 };
 
 // State management
@@ -84,7 +83,7 @@ async function getChannelId() {
 }
 
 /**
- * Fetch videos from YouTube API using search query
+ * Fetch videos from YouTube API using channel ID
  */
 async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
     if (!YOUTUBE_CONFIG.API_KEY) {
@@ -92,10 +91,10 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
     }
     
     try {
-        // Search for videos using the channel name/query
+        // Use the channel ID directly to fetch videos
         const apiUrl = new URL('https://www.googleapis.com/youtube/v3/search');
         apiUrl.searchParams.append('part', 'snippet');
-        apiUrl.searchParams.append('q', `"${YOUTUBE_CONFIG.SEARCH_QUERY}" site:youtube.com`);
+        apiUrl.searchParams.append('channelId', YOUTUBE_CONFIG.CHANNEL_ID);
         apiUrl.searchParams.append('type', 'video');
         apiUrl.searchParams.append('order', 'date');
         apiUrl.searchParams.append('maxResults', maxResults.toString());
@@ -105,28 +104,21 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
             apiUrl.searchParams.append('pageToken', pageToken);
         }
         
-        console.log('Searching for videos with query:', YOUTUBE_CONFIG.SEARCH_QUERY);
+        console.log('Fetching videos from channel ID:', YOUTUBE_CONFIG.CHANNEL_ID);
         
         const response = await fetch(apiUrl.toString());
         
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('API Response:', response.status, errorText);
             throw new Error(`YouTube API error: ${response.status} - ${response.statusText}`);
         }
         
         const data = await response.json();
         
         if (data.error) {
+            console.error('YouTube API Error:', data.error);
             throw new Error(`YouTube API error: ${data.error.message}`);
-        }
-        
-        // Filter results to only include videos from the SRED channel
-        if (data.items) {
-            data.items = data.items.filter(item => 
-                item.snippet.channelTitle.toLowerCase().includes('sred') ||
-                item.snippet.channelTitle.toLowerCase().includes('shed') ||
-                item.snippet.title.toLowerCase().includes('sred') ||
-                item.snippet.title.toLowerCase().includes('sr&ed')
-            );
         }
         
         // Get additional details for each video (duration, view count, etc.)
@@ -138,19 +130,22 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
             detailsUrl.searchParams.append('key', YOUTUBE_CONFIG.API_KEY);
             
             const detailsResponse = await fetch(detailsUrl.toString());
-            const detailsData = await detailsResponse.json();
             
-            // Merge the data
-            data.items.forEach((item, index) => {
-                const details = detailsData.items?.find(d => d.id === item.id.videoId);
-                if (details) {
-                    item.contentDetails = details.contentDetails;
-                    item.statistics = details.statistics;
-                }
-            });
+            if (detailsResponse.ok) {
+                const detailsData = await detailsResponse.json();
+                
+                // Merge the data
+                data.items.forEach((item, index) => {
+                    const details = detailsData.items?.find(d => d.id === item.id.videoId);
+                    if (details) {
+                        item.contentDetails = details.contentDetails;
+                        item.statistics = details.statistics;
+                    }
+                });
+            }
         }
         
-        console.log(`Successfully fetched ${data.items?.length || 0} videos`);
+        console.log(`Successfully fetched ${data.items?.length || 0} videos from SRED From The Shed channel`);
         return data;
         
     } catch (error) {

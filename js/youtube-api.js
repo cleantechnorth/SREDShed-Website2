@@ -22,14 +22,15 @@ let allVideosLoaded = false;
  * Initialize YouTube API
  */
 function initializeYouTubeAPI() {
-    // Try to get API key from environment variables or use a fallback
-    YOUTUBE_CONFIG.API_KEY = getAPIKey();
+    // Get API key from window object (set by api-setup.js)
+    YOUTUBE_CONFIG.API_KEY = window.YOUTUBE_API_KEY;
     
-    if (!YOUTUBE_CONFIG.API_KEY) {
+    if (!YOUTUBE_CONFIG.API_KEY || YOUTUBE_CONFIG.API_KEY === 'YOUTUBE_API_KEY_PLACEHOLDER') {
         console.warn('YouTube API key not available. Using fallback content.');
         return false;
     }
     
+    console.log('YouTube API initialized successfully');
     return true;
 }
 
@@ -345,14 +346,27 @@ async function loadYouTubeVideos(type = 'featured') {
             }
         }
         
-        console.log(`Loaded ${data.items.length} videos for ${type} section`);
+        console.log(`Loaded ${data.items.length} real videos from SRED From The Shed channel for ${type} section`);
         
     } catch (error) {
         console.error('Error loading videos:', error);
         
-        if (window.SREDWebsite?.showVideoLoadError) {
-            window.SREDWebsite.showVideoLoadError(container);
+        // Show fallback content instead of error
+        const fallbackData = getFallbackVideos(
+            type === 'featured' ? YOUTUBE_CONFIG.MAX_RESULTS_FEATURED : YOUTUBE_CONFIG.MAX_RESULTS_ALL
+        );
+        
+        if (!currentPageToken) {
+            container.innerHTML = '';
         }
+        
+        const videoCards = fallbackData.items.map(video => 
+            createVideoCard(video, type === 'featured')
+        ).join('');
+        
+        container.insertAdjacentHTML('beforeend', videoCards);
+        
+        console.log(`Loaded ${fallbackData.items.length} fallback videos for ${type} section`);
     } finally {
         isLoading = false;
     }

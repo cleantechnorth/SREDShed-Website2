@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content - SR&ED From The Shed</title>
+    <meta name="description" content="Explore all SR&ED From The Shed video content, policy updates, and expert insights on Canada's SR&ED tax credit program.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/logo.svg" alt="SRED From The Shed" height="40" class="me-2">
+                <span class="brand-text">SR&ED From The Shed</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="content.html">Content</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <!-- Substack Subscribe Button -->
+                <div class="d-none d-lg-block">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#substackModal">
+                        <i class="fas fa-envelope me-2"></i>Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="display-4 fw-bold text-primary mb-3">Content Library</h1>
+                    <p class="lead">
+                        Tune in to get a clear breakdown of the latest updates to the SR&ED program and SR&ED policy discussions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Videos Section -->
+                <div class="col-lg-8">
+                    <h2 class="mb-4">
+                        <i class="fas fa-video text-primary me-2"></i>
+                        Latest Videos
+                    </h2>
+                    
+                    <!-- Video Grid -->
+                    <div id="all-videos" class="row g-4">
+                        <!-- Videos will be loaded dynamically -->
+                        <div class="col-12 text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading videos...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mt-4">
+                        <button id="load-more-videos" class="btn btn-outline-primary" style="display: none;">
+                            <i class="fas fa-plus me-2"></i>Load More Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Key Topics -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-list me-2"></i>
+                                Key Topics Covered
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="fas fa-chevron-right text-primary me-2"></i>
+                                    Definition changes such as "Government Assistance"
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-chevron-right text-primary me-2"></i>
+                                    Enhanced 35% refundable tax credit limit increased from $3M to $4.5M
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-chevron-right text-primary me-2"></i>
+                                    Expanded eligibility for Canadian public corporations
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-chevron-right text-primary me-2"></i>
+                                    Restoration of capital expenditures eligibility
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-chevron-right text-primary me-2"></i>
+                                    Updated taxable capital phase-out thresholds
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Subscribe Section -->
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-envelope me-2"></i>
+                                Stay Updated
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Subscribe to our newsletter for the latest SR&ED insights and policy updates.
+                            </p>
+                            <iframe src="https://sredshed.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="assets/logo.svg" alt="SRED From The Shed" height="30" class="me-2">
+                        <span class="fw-bold">SR&ED From The Shed</span>
+                    </div>
+                    <p class="text-white-50">
+                        Insights, updates, and practical guidance to support your growth.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@sredfromtheshed2727" target="_blank" class="text-white me-3">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://sredshed.substack.com" target="_blank" class="text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">Quick Links</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                                <li><a href="content.html" class="text-white-50 text-decoration-none">Content</a></li>
+                                <li><a href="about.html" class="text-white-50 text-decoration-none">About</a></li>
+                                <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">Topics</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary">#SR&ED</span>
+                                <span class="badge bg-primary">#Innovation</span>
+                                <span class="badge bg-primary">#TaxCredits</span>
+                                <span class="badge bg-primary">#SREDshed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-white-50 mb-0">&copy; 2024 SR&ED From The Shed. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Substack Modal -->
+    <div class="modal fade" id="substackModal" tabindex="-1" aria-labelledby="substackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="substackModalLabel">Subscribe to SR&ED From The Shed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <iframe src="https://sredshed.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white; max-width: 480px;" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/youtube-api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -2,78 +2,42 @@
   <defs>
     <!-- Gradient for the shed -->
     <linearGradient id="shedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#2B5B7B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E3F55;stop-opacity:1" />
     </linearGradient>
-    
-    <!-- Shadow filter -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000020"/>
-    </filter>
+    <!-- Window gradient -->
+    <linearGradient id="windowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5BB3E6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3A95C9;stop-opacity:1" />
+    </linearGradient>
   </defs>
-  
+
   <!-- Background -->
   <rect width="400" height="120" fill="transparent"/>
-  
+
+  <!-- Text "SR&ED" -->
+  <text x="20" y="60" font-family="Arial Black, sans-serif" font-size="42" font-weight="900" fill="#1E3F55" letter-spacing="-1">
+    SR&amp;ED
+  </text>
+
   <!-- Shed building -->
-  <g transform="translate(20, 20)">
-    <!-- Shed base -->
-    <rect x="0" y="40" width="80" height="50" fill="url(#shedGradient)" stroke="#2E5A87" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Shed roof -->
-    <polygon points="0,40 40,15 80,40" fill="#2E5A87" stroke="#1E3A57" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Shed door -->
-    <rect x="30" y="55" width="20" height="35" fill="#87CEEB" stroke="#5F9EBF" stroke-width="1.5"/>
-    <rect x="32" y="57" width="7" height="31" fill="#B8E6FF" stroke="#87CEEB" stroke-width="1"/>
-    <rect x="41" y="57" width="7" height="31" fill="#B8E6FF" stroke="#87CEEB" stroke-width="1"/>
-    
+  <g transform="translate(300, 20)">
+    <!-- Main body -->
+    <rect x="0" y="10" width="80" height="70" fill="#5BB3E6" stroke="#1E3F55" stroke-width="2"/>
+
+    <!-- Roof -->
+    <rect x="-5" y="0" width="90" height="15" fill="#1E3F55"/>
+
+    <!-- Door -->
+    <rect x="25" y="30" width="30" height="50" fill="#1E3F55" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="27" y="32" width="26" height="46" fill="#3A95C9"/>
+
     <!-- Door handles -->
-    <circle cx="36" cy="72" r="1.5" fill="#5F9EBF"/>
-    <circle cx="44" cy="72" r="1.5" fill="#5F9EBF"/>
-    
-    <!-- Shed window -->
-    <rect x="10" y="50" width="12" height="8" fill="#E6F3FF" stroke="#5F9EBF" stroke-width="1"/>
-    <line x1="16" y1="50" x2="16" y2="58" stroke="#5F9EBF" stroke-width="0.5"/>
-    <line x1="10" y1="54" x2="22" y2="54" stroke="#5F9EBF" stroke-width="0.5"/>
-    
-    <!-- Roof details -->
-    <line x1="5" y1="35" x2="75" y2="35" stroke="#1E3A57" stroke-width="1" opacity="0.7"/>
-    <polygon points="78,40 82,38 82,42" fill="#1E3A57"/>
+    <rect x="42" y="50" width="2" height="10" fill="#FFFFFF"/>
   </g>
-  
-  <!-- Text -->
-  <g transform="translate(120, 20)">
-    <!-- "SRED" text -->
-    <text x="0" y="30" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#2E5A87" letter-spacing="-1px">
-      SRED
-    </text>
-    
-    <!-- "From The" text -->
-    <text x="0" y="55" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#5F9EBF">
-      From The
-    </text>
-    
-    <!-- "SHED" text -->
-    <text x="0" y="80" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#2E5A87" letter-spacing="-1px">
-      SHED
-    </text>
-  </g>
-  
-  <!-- Decorative elements -->
-  <g transform="translate(300, 30)">
-    <!-- Small decorative icons representing innovation/research -->
-    <circle cx="10" cy="10" r="3" fill="#87CEEB" opacity="0.7"/>
-    <circle cx="25" cy="15" r="2" fill="#4A90E2" opacity="0.5"/>
-    <circle cx="40" cy="8" r="2.5" fill="#357ABD" opacity="0.6"/>
-    
-    <!-- Lines connecting the circles (representing connections/network) -->
-    <line x1="10" y1="10" x2="25" y2="15" stroke="#87CEEB" stroke-width="1" opacity="0.5"/>
-    <line x1="25" y1="15" x2="40" y2="8" stroke="#87CEEB" stroke-width="1" opacity="0.5"/>
-  </g>
-  
-  <!-- Tagline -->
-  <text x="120" y="105" font-family="Arial, sans-serif" font-size="10" font-style="italic" fill="#5F9EBF">
-    Innovation Tax Credit Insights
+
+  <!-- Text "SHED" -->
+  <text x="220" y="85" font-family="Arial Black, sans-serif" font-size="24" font-weight="900" fill="#1E3F55">
+    SHED
   </text>
 </svg>

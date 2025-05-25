@@ -9,7 +9,7 @@ const YOUTUBE_CONFIG = {
     CHANNEL_HANDLE: 'sredfromtheshed2727',
     CHANNEL_URL: 'https://youtube.com/@sredfromtheshed2727',
     API_KEY: '', // Will be set from environment
-    MAX_RESULTS_FEATURED: 3,
+    MAX_RESULTS_FEATURED: 2,
     MAX_RESULTS_ALL: 12,
     VIDEOS_PER_PAGE: 6
 };

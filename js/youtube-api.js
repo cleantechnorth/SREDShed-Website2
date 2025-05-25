@@ -5,7 +5,7 @@
 
 // YouTube API configuration
 const YOUTUBE_CONFIG = {
-    CHANNEL_ID: null, // Will be dynamically found
+    CHANNEL_ID: 'UCaKMsi4kkAqs-L9Kyy_u9RQ',
     CHANNEL_HANDLE: 'sredfromtheshed2727',
     CHANNEL_URL: 'https://youtube.com/@sredfromtheshed2727',
     API_KEY: '', // Will be set from environment

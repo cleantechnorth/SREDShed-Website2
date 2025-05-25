@@ -1,0 +1,105 @@
+Prompt for AI/Web Development Task
+Goal:
+Design a Replit-based website that mirrors the structure and user experience of StackAdept.com, but features the content, branding, and style of the "SRED From The Shed" YouTube channel and logo.
+ 
+Step 1: Review StackAdept.com
+•	Analyze the layout, navigation, and core features of www.stackadept.com.
+•	Note the homepage structure, content organization (e.g., blog posts, video embeds, resource sections), menu items, and interactive elements.
+•	Identify any unique design elements, such as color schemes, typography, iconography, and imagery.
+Step 2: Review "SRED From The Shed" YouTube Channel
+•	Access and review all available video content and transcripts from https://youtube.com/@sredfromtheshed2727?si=SdsfKZB3pqWzQ8NO[1].
+•	Extract key topics, themes, and recurring series (e.g., SR&ED program explanations, tax credit guides, grant/subsidy discussions)[1][2][3].
+•	Identify the visual branding: logo, channel art, color palette, and any distinctive imagery or motifs used in the videos and thumbnails.
+Step 3: Design the Replit-Based Website
+•	Structure:
+Replicate the main structure of StackAdept.com, including:
+o	Homepage with featured content Maximum 3 YouTube videos from the below. Note that the code should update the videos every time a new video is added. Including the latest in the three: https://youtube.com/@sredfromtheshed2727?si=SdsfKZB3pqWzQ8NO
+o	Content Page that features all https://youtube.com/@sredfromtheshed2727?si=SdsfKZB3pqWzQ8NO content. Note that the code should update the videos every time a new video is added. Including all videos from most recent to oldest. 
+o	About – Content is below. 
+•	There should be a subscribe button for Substack (<iframe src="https://sredshed.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>) in the top right of the home page navigation.
+•	Content Page:
+This page should have 2 sections. 
+o	1) Populate the site with content from the "SRED From The Shed" channel:
+	Embed YouTube videos and provide Summary or highlight key points from each video
+o	2) Embed the substack button at: <iframe src="https://sredshed.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe> 
+o	
+•	Contact Pages – The Contact Page will include the below Hubspot form:
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    portalId: "7193539",
+    formId: "d98b1dd1-79b5-4d82-8d77-c0be78b2a6a1",
+    region: "na1"
+  });
+</script>
+o	
+•	Branding:
+Use the imagery, colors, and logo from "SRED From The Shed" to ensure the site feels like an extension of the channel[1].
+o	Use the attached, updated logo in the top Left.
+o	Adapt the color palette and visual style seen in the channel's branding and the attached logo
+o	Incorporate the channel logo prominently
+o	Use relevant icons or imagery which will also be uploaded. 
+•	Technical:
+o	Use Replit’s web development stack (HTML/CSS/JS or a framework of your choice)
+o	Ensure the site is responsive and accessible, but can be hosted as a STATIC SITE
+o	Include documentation for future content updates (e.g., how to add new videos/transcripts)
+ 
+Deliverables
+•	A working Replit project link to the website that can be deployed on a static site. 
+•	A brief documentation file explaining:
+o	Site structure and navigation
+o	How to update/add new content
+o	Any design choices made to align with "SRED From The Shed" branding
+ 
+Additional Notes
+•	If the SRED From The Shed logo or color palette is not directly available, use best judgment based on YouTube channel art and video thumbnails[1].
+•	Prioritize clarity, ease of navigation, and a clean, modern look consistent with both StackAdept.com and the SRED From The Shed brand.
+ 
+The Content for the Website is Below: 
+Homepage
+Welcome to SR&ED From The Shed
+Dive deep into Canada’s ~$3 billion SR&ED tax credit program—the nation’s largest innovation incentive.
+SR&ED From The Shed is your trusted source for expert insights, policy updates, and practical tips, all designed to help you navigate the complexities of SR&ED and maximize your innovation funding. From our yard to yours: Welcome to the SR&ED Shed.
+Featured Topics:
+•	In-depth analysis of the SR&ED program and its recent changes
+•	Policy updates and what they mean for your business
+•	Tips and tricks to strengthen your SR&ED claims
+•	Real-world examples, roundtables, and interviews with industry leaders
+Stay informed. Stay ahead. Explore our latest videos, articles, and guides below.
+ 
+About
+About SR&ED From The Shed
+SR&ED From The Shed provides a comprehensive look at the ~$3 billion SR&ED tax credit program, which has supported Canadian innovation since before 1986[1][2][3].
+Our mission is to break down complex policies, share actionable advice, and offer transparency into a program that remitted $3.6 billion in investment tax credits (ITCs) in 2022—supporting the prosperity of Canadian SMEs, with over 60% of claims coming from small and medium businesses[3].
+What We Offer:
+•	Deep dives into SR&ED eligibility, application strategies, and documentation best practices
+•	Timely policy updates, including expenditure limit increases and expanded eligibility for public companies[4]
+•	Insights from industry roundtables and expert interviews
+•	Guidance for startups, established businesses, and advisors
+Create a sub heading of Our Leadership that includes the below. Code for this and copy can be fround at: https://cleaneconomycredits.com/about
+ 
+
+Content
+Tune in to get a clear breakdown of the latest updates to the SR&ED program and SR&ED policy discussions. This could include exploring:
+•	Definition changes such as that for “Government Assistance” 
+•	Enhanced 35% refundable tax credit limit increased from $3M to $4.5M in qualifying expenditures
+•	Expanded eligibility for Canadian public corporations
+•	Restoration of capital expenditures as eligible for both deduction and ITC components
+•	Updated taxable capital phase-out thresholds
+ 
+Contact
+Contact the SR&ED From The Shed team about your SR&ED journey and how it can help support your growth. (INCLUDE A BUTTON THAT LINKS TO THE CONTACT US PAGE)
+ 
+Footer
+SR&ED From The Shed – Insights, updates, and practical guidance to support your growth.
+#SR&ED #Innovation #TaxCredits #SREDshed
+DO not include any addresses or contact information. 
+ 
+This updated copy integrates content and themes from the SR&ED From The Shed Substack, ensuring the site reflects the latest policy changes, deep-dive analysis, and the community-focused voice of the brand[1][2][5][3].
+
+
+
+
+⁂
+ 
+1.	https://www.youtube.com/@sredfromtheshed2727   

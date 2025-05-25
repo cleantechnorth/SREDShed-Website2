@@ -5,7 +5,7 @@
 
 // YouTube API configuration
 const YOUTUBE_CONFIG = {
-    CHANNEL_ID: 'UCKEKDbwFB08xaNrP1dMpxPA',
+    CHANNEL_ID: null, // Will be dynamically found
     CHANNEL_HANDLE: 'sredfromtheshed2727',
     CHANNEL_URL: 'https://youtube.com/@sredfromtheshed2727',
     API_KEY: '', // Will be set from environment
@@ -45,34 +45,45 @@ function getAPIKey() {
 }
 
 /**
- * Extract channel ID from channel handle
+ * Get the correct channel ID for SRED From The Shed
  */
 async function getChannelId() {
     try {
-        // Use the channels endpoint with forHandle parameter for @handles
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${YOUTUBE_CONFIG.CHANNEL_HANDLE}&key=${YOUTUBE_CONFIG.API_KEY}`
-        );
-        
-        if (!response.ok) {
-            throw new Error(`API Error: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.items && data.items.length > 0) {
-            return data.items[0].id;
-        }
-        
-        // Fallback: try search if forHandle doesn't work
+        // First try to search for the exact channel name
         const searchResponse = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${YOUTUBE_CONFIG.CHANNEL_HANDLE}&key=${YOUTUBE_CONFIG.API_KEY}`
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q="SRED From The Shed"&key=${YOUTUBE_CONFIG.API_KEY}`
         );
         
-        const searchData = await searchResponse.json();
+        if (searchResponse.ok) {
+            const searchData = await searchResponse.json();
+            console.log('Channel search results:', searchData);
+            
+            if (searchData.items && searchData.items.length > 0) {
+                // Look for the exact match
+                const exactMatch = searchData.items.find(item => 
+                    item.snippet.title.toLowerCase().includes('sred') && 
+                    item.snippet.title.toLowerCase().includes('shed')
+                );
+                
+                if (exactMatch) {
+                    console.log('Found SRED From The Shed channel:', exactMatch.snippet.title, exactMatch.snippet.channelId);
+                    return exactMatch.snippet.channelId;
+                }
+            }
+        }
         
-        if (searchData.items && searchData.items.length > 0) {
-            return searchData.items[0].snippet.channelId;
+        // Try with the handle
+        const handleResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/channels?part=id,snippet&forHandle=${YOUTUBE_CONFIG.CHANNEL_HANDLE}&key=${YOUTUBE_CONFIG.API_KEY}`
+        );
+        
+        if (handleResponse.ok) {
+            const handleData = await handleResponse.json();
+            console.log('Handle search results:', handleData);
+            
+            if (handleData.items && handleData.items.length > 0) {
+                return handleData.items[0].id;
+            }
         }
         
     } catch (error) {
@@ -105,6 +116,7 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
         }
         
         console.log('Fetching videos from channel ID:', YOUTUBE_CONFIG.CHANNEL_ID);
+        console.log('Expected channel: SRED From The Shed (@sredfromtheshed2727)');
         
         const response = await fetch(apiUrl.toString());
         

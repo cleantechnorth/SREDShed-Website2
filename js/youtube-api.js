@@ -5,9 +5,9 @@
 
 // YouTube API configuration
 const YOUTUBE_CONFIG = {
-    CHANNEL_ID: 'UCYourChannelIDHere', // This will be extracted from the channel URL
+    CHANNEL_HANDLE: 'sredfromtheshed2727',
     CHANNEL_URL: 'https://youtube.com/@sredfromtheshed2727',
-    API_KEY: '', // Will be set from environment or fallback
+    API_KEY: '', // Will be set from environment
     MAX_RESULTS_FEATURED: 3,
     MAX_RESULTS_ALL: 12,
     VIDEOS_PER_PAGE: 6
@@ -37,24 +37,42 @@ function initializeYouTubeAPI() {
  * Get YouTube API key with fallback
  */
 function getAPIKey() {
-    // In a real deployment, this would come from environment variables
-    // For demo purposes, we'll simulate the API response
-    return process?.env?.YOUTUBE_API_KEY || '';
+    // Check if API key is available in environment
+    const apiKey = typeof window !== 'undefined' && window.YOUTUBE_API_KEY;
+    return apiKey && apiKey !== 'YOUTUBE_API_KEY_PLACEHOLDER' ? apiKey : null;
 }
 
 /**
- * Extract channel ID from channel URL
+ * Extract channel ID from channel handle
  */
 async function getChannelId() {
-    // For @handle URLs, we need to resolve to channel ID
-    // This is a simplified approach - in production, you'd use the YouTube API
     try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=sredfromtheshed2727&key=${YOUTUBE_CONFIG.API_KEY}`);
+        // Use the channels endpoint with forHandle parameter for @handles
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${YOUTUBE_CONFIG.CHANNEL_HANDLE}&key=${YOUTUBE_CONFIG.API_KEY}`
+        );
+        
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         if (data.items && data.items.length > 0) {
-            return data.items[0].snippet.channelId;
+            return data.items[0].id;
         }
+        
+        // Fallback: try search if forHandle doesn't work
+        const searchResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${YOUTUBE_CONFIG.CHANNEL_HANDLE}&key=${YOUTUBE_CONFIG.API_KEY}`
+        );
+        
+        const searchData = await searchResponse.json();
+        
+        if (searchData.items && searchData.items.length > 0) {
+            return searchData.items[0].snippet.channelId;
+        }
+        
     } catch (error) {
         console.error('Error getting channel ID:', error);
     }
@@ -67,7 +85,7 @@ async function getChannelId() {
  */
 async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
     if (!YOUTUBE_CONFIG.API_KEY) {
-        return getFallbackVideos(maxResults);
+        throw new Error('YouTube API key not available');
     }
     
     try {
@@ -92,13 +110,19 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
             apiUrl.searchParams.append('pageToken', pageToken);
         }
         
+        console.log('Fetching videos from:', YOUTUBE_CONFIG.CHANNEL_HANDLE);
+        
         const response = await fetch(apiUrl.toString());
         
         if (!response.ok) {
-            throw new Error(`YouTube API error: ${response.status}`);
+            throw new Error(`YouTube API error: ${response.status} - ${response.statusText}`);
         }
         
         const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(`YouTube API error: ${data.error.message}`);
+        }
         
         // Get additional details for each video (duration, view count, etc.)
         if (data.items && data.items.length > 0) {
@@ -121,11 +145,12 @@ async function fetchYouTubeVideos(maxResults = 12, pageToken = '') {
             });
         }
         
+        console.log(`Successfully fetched ${data.items?.length || 0} videos`);
         return data;
         
     } catch (error) {
         console.error('Error fetching YouTube videos:', error);
-        return getFallbackVideos(maxResults);
+        throw error;
     }
 }
 

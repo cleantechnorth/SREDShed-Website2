@@ -5,11 +5,11 @@
 
 // Set up YouTube API key from environment
 (function() {
-    // This will be replaced with the actual API key during deployment
-    const API_KEY = 'AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw'; // Your provided API key
+    // Updated API key with fresh quota
+    const API_KEY = 'AIzaSyCn13fugHy0xkOubNIkZ9v9wLg-waRt6T0';
     
     // Make it available globally
     window.YOUTUBE_API_KEY = API_KEY;
     
-    console.log('YouTube API configured successfully');
+    console.log('YouTube API configured successfully with new key');
 })();
